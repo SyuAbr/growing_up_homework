@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
-require_relative '../lib/transform_command'
+require_relative '../lib/nested_hash_builder'
 
-RSpec.describe TransformCommand, '#call' do
-  subject(:result) { described_class.new(input).call }
+RSpec.describe NestedHashBuilder do
+  subject(:result) { described_class.call(input) }
 
-  context  do
+  context 'when input is a deeply nested hybrid structure' do
     let(:input) do
       {
         a: :a1,
@@ -26,7 +26,7 @@ RSpec.describe TransformCommand, '#call' do
       }
     end
 
-    it 'builds the correct nested hash' do
+    it 'returns the correctly nested hash structure' do
       expect(result).to eq(expected)
     end
   end
